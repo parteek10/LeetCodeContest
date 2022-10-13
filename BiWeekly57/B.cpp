@@ -1,8 +1,6 @@
 // https://leetcode.com/contest/biweekly-contest-57/problems/the-number-of-the-smallest-unoccupied-chair/
 
 class Solution {
-    #define F first
-    #define S second
 public:
     int smallestChair(vector<vector<int>>& times, int targetFriend) {
         set<int> ava;
@@ -16,14 +14,14 @@ public:
             moves.insert({times[i][1], {-1, i}});
         }
         for(auto &i: moves) {
-            if(i.S.F == 1){
-                if(i.S.S == targetFriend) {
+            if(i.second.first == 1){
+                if(i.second.second == targetFriend) {
                     return *ava.begin();
                 }
-                mp[i.S.S] = *ava.begin();
+                mp[i.second.second] = *ava.begin();
                 ava.erase(ava.begin());
             } else {
-                ava.insert(mp[i.S.S]);
+                ava.insert(mp[i.second.second]);
             }
         }
         return 0;
